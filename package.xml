@@ -1,54 +1,54 @@
 <?xml version="1.0"?>
 <package>
     <name>Retargeting_Tracker</name>
-    <version>1.1.0</version>
+    <version>1.1.1</version>
     <stability>stable</stability>
     <license uri="http://opensource.org/licenses/osl-3.0.php">Open Software License (OSL)</license>
     <channel>community</channel>
     <extends/>
     <summary>Retargeting and Marketing Automation. Personalized email content + Personalized live messages + SMS triggers to deliver to your customers the products they want to buy.</summary>
-    <description>&lt;h2&gt;Retargeting and Marketing Automation&lt;/h2&gt;&#xD;
-&#xD;
-&lt;p&gt;Personalized email content + Personalized live messages + SMS triggers to deliver to your customers the products they want to buy.&lt;/p&gt;&#xD;
-&#xD;
-&lt;h2&gt;Features&lt;/h2&gt;&#xD;
-&#xD;
-&lt;h3&gt;&lt;strong&gt;Live Triggers&lt;/strong&gt;&lt;/h3&gt;&#xD;
-&#xD;
-&lt;p&gt;When you have people in our online shop, if you see that someone&amp;#39;s showing a lot of interest in one product, wouldn&amp;#39;t you offer them a small discount to make sure they buy it? That&amp;#39;s what we thought!&amp;nbsp;&lt;br /&gt;&#xD;
-&lt;br /&gt;&#xD;
-With our personalized live triggers that&amp;#39;s exactly what you&amp;#39;ll do, just that you won&amp;#39;t have to lift a finger.&lt;/p&gt;&#xD;
-&#xD;
-&lt;p&gt;&lt;a href="https://retargeting.biz/live-triggers-marketing"&gt;read more about live triggers&lt;/a&gt;&lt;/p&gt;&#xD;
-&#xD;
-&lt;h3&gt;&lt;strong&gt;E-mail triggers &amp;amp; reminders&lt;/strong&gt;&lt;/h3&gt;&#xD;
-&#xD;
-&lt;p&gt;We all want to market someone when they&amp;#39;re in a buying mood, but it&amp;#39;s hard to get the right timing. But we found a secret formula and you&amp;#39;ll have access to it through our e-mail marketing software. Someone leaves the site without finishing the order? We got your back!&lt;/p&gt;&#xD;
-&#xD;
-&lt;p&gt;Someone browsed the site, found interesting products but didn&amp;#39;t press the buy button? We&amp;#39;ll remind him about those cool products through a triggered email. And that&amp;#39;s not all, we can do so much more with our personalized emails!&lt;/p&gt;&#xD;
-&#xD;
-&lt;p&gt;&lt;a href="https://retargeting.biz/email-triggers-and-reminders"&gt;read more about email triggers&lt;/a&gt;&lt;/p&gt;&#xD;
-&#xD;
-&lt;h3&gt;&lt;strong&gt;SMS Triggers&lt;/strong&gt;&lt;/h3&gt;&#xD;
-&#xD;
-&lt;p&gt;Nowadays, with everyone checking their phones every 5 minutes, you can&amp;#39;t go wrong with this, you&amp;#39;re 100% sure that they will see your message. What better way to remind someone that they forgot to finish order a couple of hours ago?&lt;/p&gt;&#xD;
-&#xD;
-&lt;p&gt;&lt;a href="https://retargeting.biz/sms-triggers"&gt;read more about sms triggers&lt;/a&gt;&lt;/p&gt;&#xD;
-&#xD;
-&lt;h3&gt;&lt;strong&gt;Multitesting&lt;/strong&gt;&lt;/h3&gt;&#xD;
-&#xD;
-&lt;p&gt;We love A/B testing so much that we created Multitesting, an improved and limitless version compared to other email marketing softwares.&lt;/p&gt;&#xD;
-&#xD;
-&lt;p&gt;You can test as many different versions as you want and you only need one click to add a new one.Did we tell you that you can do this for any trigger, e-mail or live? The perfect&amp;nbsp;&lt;a href="http://en.wikipedia.org/wiki/Marketing_automation"&gt;marketing automation&lt;/a&gt;&amp;nbsp;tool for your online shop!&lt;/p&gt;&#xD;
-&#xD;
-&lt;p&gt;&lt;strong&gt;Contact&lt;/strong&gt;&lt;/p&gt;&#xD;
-&#xD;
-&lt;p&gt;For help or more info, please contact info@retargeting.biz or visit&amp;nbsp;&lt;a href="http://www.retargeting.biz"&gt;retargeting.biz&lt;/a&gt;.&lt;/p&gt;</description>
+    <description>&amp;lt;h2&amp;gt;Retargeting and Marketing Automation&amp;lt;/h2&amp;gt;&amp;#xD;&#xD;
+&amp;#xD;&#xD;
+&amp;lt;p&amp;gt;Personalized email content + Personalized live messages + SMS triggers to deliver to your customers the products they want to buy.&amp;lt;/p&amp;gt;&amp;#xD;&#xD;
+&amp;#xD;&#xD;
+&amp;lt;h2&amp;gt;Features&amp;lt;/h2&amp;gt;&amp;#xD;&#xD;
+&amp;#xD;&#xD;
+&amp;lt;h3&amp;gt;&amp;lt;strong&amp;gt;Live Triggers&amp;lt;/strong&amp;gt;&amp;lt;/h3&amp;gt;&amp;#xD;&#xD;
+&amp;#xD;&#xD;
+&amp;lt;p&amp;gt;When you have people in our online shop, if you see that someone&amp;amp;#39;s showing a lot of interest in one product, wouldn&amp;amp;#39;t you offer them a small discount to make sure they buy it? That&amp;amp;#39;s what we thought!&amp;amp;nbsp;&amp;lt;br /&amp;gt;&amp;#xD;&#xD;
+&amp;lt;br /&amp;gt;&amp;#xD;&#xD;
+With our personalized live triggers that&amp;amp;#39;s exactly what you&amp;amp;#39;ll do, just that you won&amp;amp;#39;t have to lift a finger.&amp;lt;/p&amp;gt;&amp;#xD;&#xD;
+&amp;#xD;&#xD;
+&amp;lt;p&amp;gt;&amp;lt;a href="https://retargeting.biz/live-triggers-marketing"&amp;gt;read more about live triggers&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;&amp;#xD;&#xD;
+&amp;#xD;&#xD;
+&amp;lt;h3&amp;gt;&amp;lt;strong&amp;gt;E-mail triggers &amp;amp;amp; reminders&amp;lt;/strong&amp;gt;&amp;lt;/h3&amp;gt;&amp;#xD;&#xD;
+&amp;#xD;&#xD;
+&amp;lt;p&amp;gt;We all want to market someone when they&amp;amp;#39;re in a buying mood, but it&amp;amp;#39;s hard to get the right timing. But we found a secret formula and you&amp;amp;#39;ll have access to it through our e-mail marketing software. Someone leaves the site without finishing the order? We got your back!&amp;lt;/p&amp;gt;&amp;#xD;&#xD;
+&amp;#xD;&#xD;
+&amp;lt;p&amp;gt;Someone browsed the site, found interesting products but didn&amp;amp;#39;t press the buy button? We&amp;amp;#39;ll remind him about those cool products through a triggered email. And that&amp;amp;#39;s not all, we can do so much more with our personalized emails!&amp;lt;/p&amp;gt;&amp;#xD;&#xD;
+&amp;#xD;&#xD;
+&amp;lt;p&amp;gt;&amp;lt;a href="https://retargeting.biz/email-triggers-and-reminders"&amp;gt;read more about email triggers&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;&amp;#xD;&#xD;
+&amp;#xD;&#xD;
+&amp;lt;h3&amp;gt;&amp;lt;strong&amp;gt;SMS Triggers&amp;lt;/strong&amp;gt;&amp;lt;/h3&amp;gt;&amp;#xD;&#xD;
+&amp;#xD;&#xD;
+&amp;lt;p&amp;gt;Nowadays, with everyone checking their phones every 5 minutes, you can&amp;amp;#39;t go wrong with this, you&amp;amp;#39;re 100% sure that they will see your message. What better way to remind someone that they forgot to finish order a couple of hours ago?&amp;lt;/p&amp;gt;&amp;#xD;&#xD;
+&amp;#xD;&#xD;
+&amp;lt;p&amp;gt;&amp;lt;a href="https://retargeting.biz/sms-triggers"&amp;gt;read more about sms triggers&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;&amp;#xD;&#xD;
+&amp;#xD;&#xD;
+&amp;lt;h3&amp;gt;&amp;lt;strong&amp;gt;Multitesting&amp;lt;/strong&amp;gt;&amp;lt;/h3&amp;gt;&amp;#xD;&#xD;
+&amp;#xD;&#xD;
+&amp;lt;p&amp;gt;We love A/B testing so much that we created Multitesting, an improved and limitless version compared to other email marketing softwares.&amp;lt;/p&amp;gt;&amp;#xD;&#xD;
+&amp;#xD;&#xD;
+&amp;lt;p&amp;gt;You can test as many different versions as you want and you only need one click to add a new one.Did we tell you that you can do this for any trigger, e-mail or live? The perfect&amp;amp;nbsp;&amp;lt;a href="http://en.wikipedia.org/wiki/Marketing_automation"&amp;gt;marketing automation&amp;lt;/a&amp;gt;&amp;amp;nbsp;tool for your online shop!&amp;lt;/p&amp;gt;&amp;#xD;&#xD;
+&amp;#xD;&#xD;
+&amp;lt;p&amp;gt;&amp;lt;strong&amp;gt;Contact&amp;lt;/strong&amp;gt;&amp;lt;/p&amp;gt;&amp;#xD;&#xD;
+&amp;#xD;&#xD;
+&amp;lt;p&amp;gt;For help or more info, please contact info@retargeting.biz or visit&amp;amp;nbsp;&amp;lt;a href="http://www.retargeting.biz"&amp;gt;retargeting.biz&amp;lt;/a&amp;gt;.&amp;lt;/p&amp;gt;</description>
     <notes>Retargeting</notes>
     <authors><author><name>Cosmin Atomei</name><user>retargeting</user><email>info@retargeting.biz</email></author></authors>
-    <date>2015-06-08</date>
-    <time>12:28:04</time>
-    <contents><target name="magecommunity"><dir name="Retargeting"><dir name="Tracker"><dir name="Block"><file name="Embed.php" hash="d114429b378b186d144f75b725bd36c4"/><file name="Triggers.php" hash="fd2f2fad2041280b0d0572ea0e2220de"/></dir><dir name="Helper"><file name="Data.php" hash="6b547d3d67003b8bef48fd4eb8efe23f"/></dir><dir name="Model"><file name="Helppages.php" hash="51305978cda160ad7b3aa8bb8e42d3a5"/><file name="Observer.php" hash="891bb244bf9caa5d5742338cd5697ee8"/></dir><dir name="controllers"><file name="DiscountsController.php" hash="2c1386a96a75a2b3e5c3667a37dc285f"/><file name="IndexController.php" hash="9cbd5b979859b2014c5ed191d9b5686a"/><file name="ProductsController.php" hash="6498c0be8d4989d47f70f4c24b9fa904"/></dir><dir name="etc"><file name="config.xml" hash="916283ac8d39f30f74870dd2fe57cd95"/><file name="system.xml" hash="46a5ed1ce340892c1010240e9c622a4e"/></dir><dir name="sql"><dir name="retargeting_tracker_setup"><file name="mysql4-install-1.0.0.php" hash="6613b3db4b7ec61fe47f9b69591fa0c5"/><file name="mysql4-install-1.1.0.php" hash="6613b3db4b7ec61fe47f9b69591fa0c5"/></dir></dir></dir></dir></target><target name="mageetc"><dir name="modules"><file name="Retargeting_Tracker.xml" hash="44dbbcea34bc8ed9cc6d744176adb9a6"/></dir></target><target name="magedesign"><dir name="frontend"><dir name="base"><dir name="default"><dir name="layout"><file name="retargeting_tracker.xml" hash="a27cb36a780ee24f3e70aba08599f37e"/></dir><dir name="template"><dir name="retargeting_tracker"><file name="embed.phtml" hash="2d973cc9fe231ebf13da0b8ae3d3ccbb"/><file name="triggers.phtml" hash="6edb265c5a761fa45235a67cebaee36a"/></dir></dir></dir></dir></dir></target></contents>
+    <date>2015-06-23</date>
+    <time>11:37:29</time>
+    <contents><target name="magecommunity"><dir name="Retargeting"><dir name="Tracker"><dir name="Block"><file name="Embed.php" hash="d114429b378b186d144f75b725bd36c4"/><file name="Triggers.php" hash="fd2f2fad2041280b0d0572ea0e2220de"/></dir><dir name="Helper"><file name="Data.php" hash="6b547d3d67003b8bef48fd4eb8efe23f"/></dir><dir name="Model"><file name="Helppages.php" hash="51305978cda160ad7b3aa8bb8e42d3a5"/><file name="Observer.php" hash="891bb244bf9caa5d5742338cd5697ee8"/></dir><dir name="controllers"><file name="DiscountsController.php" hash="2c1386a96a75a2b3e5c3667a37dc285f"/><file name="IndexController.php" hash="9cbd5b979859b2014c5ed191d9b5686a"/><file name="ProductsController.php" hash="6498c0be8d4989d47f70f4c24b9fa904"/></dir><dir name="etc"><file name="config.xml" hash="0d685b4a87fdfa1962b2c89b0c9812b3"/><file name="system.xml" hash="46a5ed1ce340892c1010240e9c622a4e"/></dir><dir name="sql"><dir name="retargeting_tracker_setup"><file name="mysql4-install-1.0.0.php" hash="6613b3db4b7ec61fe47f9b69591fa0c5"/><file name="mysql4-install-1.1.0.php" hash="6613b3db4b7ec61fe47f9b69591fa0c5"/></dir></dir></dir></dir></target><target name="mageetc"><dir name="modules"><file name="Retargeting_Tracker.xml" hash="44dbbcea34bc8ed9cc6d744176adb9a6"/></dir></target><target name="magedesign"><dir name="frontend"><dir name="base"><dir name="default"><dir name="layout"><file name="retargeting_tracker.xml" hash="a27cb36a780ee24f3e70aba08599f37e"/></dir><dir name="template"><dir name="retargeting_tracker"><file name="embed.phtml" hash="2d973cc9fe231ebf13da0b8ae3d3ccbb"/><file name="triggers.phtml" hash="dc3ba090077c9009e06b7498670de5f2"/></dir></dir></dir></dir></dir></target></contents>
     <compatible/>
     <dependencies><required><php><min>5.2.0</min><max>6.0.0</max></php></required></dependencies>
 </package>
