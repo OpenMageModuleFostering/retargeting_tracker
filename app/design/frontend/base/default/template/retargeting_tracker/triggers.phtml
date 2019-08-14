@@ -39,7 +39,7 @@
         ----------------------- Trigger setEmail -----------------------
     */
     ?>
-    <?php if ( $info = Mage::getSingleton('core/session')->getTriggerSetEmail() ) : ?>
+    <?php if ($info = Mage::getSingleton('core/session')->getTriggerSetEmail()) : ?>
     // Trigger setEmail
     var _ra = _ra || {};
     _ra.setEmailInfo = {
@@ -61,7 +61,7 @@
         ----------------------- Trigger sendCategory -----------------------
     */
     ?>
-    <?php if ( Mage::app()->getFrontController()->getRequest()->getControllerName() == "category" ) : ?>
+    <?php if (Mage::app()->getFrontController()->getRequest()->getControllerName() == "category") : ?>
 
     // Trigger sendCategory
 
@@ -77,10 +77,10 @@
             $breadcrumbCategory = Mage::getModel('catalog/category')->load($breadcrumbCategory->getParentId());
 
             $_categoryBreadcrumb[] = '[{
-					"id": "' . $breadcrumbCategory->getId() . '",
-					"name": "' . htmlspecialchars($breadcrumbCategory->getName()) . '",
-					"parent": ' . ($breadcrumbCategory->getLevel() > 2 ? '"' . $breadcrumbCategory->getParentId() . '"' : 'false') . '
-				}]';
+                    "id": "' . $breadcrumbCategory->getId() . '",
+                    "name": "' . htmlspecialchars($breadcrumbCategory->getName()) . '",
+                    "parent": ' . ($breadcrumbCategory->getLevel() > 2 ? '"' . $breadcrumbCategory->getParentId() . '"' : 'false') . '
+                }]';
         }
         $_categoryBreadcrumb = '[' . implode(', ', $_categoryBreadcrumb) . ']';
     }
@@ -112,13 +112,13 @@
         ----------------------- Trigger sendProduct -----------------------
     */
     ?>
-    <?php if ( Mage::app()->getFrontController()->getRequest()->getControllerName() == "product" && !is_null(Mage::registry('product')) ) : ?>
+    <?php if (Mage::app()->getFrontController()->getRequest()->getControllerName() == "product" && !is_null(Mage::registry('product'))) : ?>
 
     // Trigger sendProduct
 
     <?php $_product = Mage::registry('current_product'); ?>
 
-    <?php if($_product) : ?>
+    <?php if ($_product) : ?>
     <?php
     $_productUrl = Mage::helper('core/url')->getCurrentUrl();
 
@@ -144,24 +144,24 @@
             while ($breadcrumbCategory->getLevel() > 2) {
                 $breadcrumbCategory = Mage::getModel('catalog/category')->load($breadcrumbCategory->getParentId());
                 $_categoryBreadcrumb[] = '{
-						"id": "' . $breadcrumbCategory->getId() . '",
-						"name": "' . htmlspecialchars($breadcrumbCategory->getName()) . '",
-						"parent": ' . ($breadcrumbCategory->getLevel() > 2 ? '"' . $breadcrumbCategory->getParentId() . '"' : 'false') . '
-					}';
+                        "id": "' . $breadcrumbCategory->getId() . '",
+                        "name": "' . htmlspecialchars($breadcrumbCategory->getName()) . '",
+                        "parent": ' . ($breadcrumbCategory->getLevel() > 2 ? '"' . $breadcrumbCategory->getParentId() . '"' : 'false') . '
+                    }';
             }
             $_categoryBreadcrumb = '[' . implode(', ', $_categoryBreadcrumb) . ']';
         }
         $_category = '[{
-				"id": "' . $_category->getId() . '",
-				"name": "' . htmlspecialchars($_category->getName()) . '",
-				"parent": ' . $_categoryParent . ',
-				"breadcrumb" : ' . $_categoryBreadcrumb . '}]';
+                "id": "' . $_category->getId() . '",
+                "name": "' . htmlspecialchars($_category->getName()) . '",
+                "parent": ' . $_categoryParent . ',
+                "breadcrumb" : ' . $_categoryBreadcrumb . '}]';
     } else {
         $_category = '[{
-				"id": "-1",
-				"name": "no category",
-				"parent": false
-			}]';
+                "id": "-1",
+                "name": "no category",
+                "parent": false
+            }]';
     }
     ?>
 
@@ -193,12 +193,16 @@
         ----------------------- Trigger addToCart -----------------------
     */
     ?>
-    <?php if ( $info = Mage::getSingleton('core/session')->getTriggerAddToCart() ) : ?>
+    <?php if ($info = Mage::getSingleton('core/session')->getTriggerAddToCart()) : ?>
 
     // Trigger addToCart
 
-    <?php $referral = Mage::getSingleton('core/session')->getReferralController(); echo "/*" . $referral . "*/"; ?>
-    <?php if ( $referral != "product" ) : ?>
+    <?php
+
+    $referral = Mage::getSingleton('core/session')->getReferralController();
+    echo "/*" . $referral . "*/"; ?>
+
+    <?php if ($referral != "product") : ?>
 
     // Trigger sendProduct before addToCart
 
@@ -225,22 +229,44 @@
                 $breadcrumbCategory = Mage::getModel('catalog/category')->load($breadcrumbCategory->getParentId());
 
                 $_categoryBreadcrumb[] = '{
-						"id": "' . $breadcrumbCategory->getId() . '",
-						"name": "' . htmlspecialchars($breadcrumbCategory->getName()) . '",
-						"parent": ' . ($breadcrumbCategory->getLevel() > 2 ? '"' . $breadcrumbCategory->getParentId() . '"' : 'false') . '
-					}';
+                        "id": "' . $breadcrumbCategory->getId() . '",
+                        "name": "' . htmlspecialchars($breadcrumbCategory->getName()) . '",
+                        "parent": ' . ($breadcrumbCategory->getLevel() > 2 ? '"' . $breadcrumbCategory->getParentId() . '"' : 'false') . '
+                    }';
             }
             $_categoryBreadcrumb = '[' . implode(', ', $_categoryBreadcrumb) . ']';
         }
         $_category = '[{
-				"id": "' . $_category->getId() . '",
-				"name": "' . htmlspecialchars($_category->getName()) . '",
-				"parent": ' . $_categoryParent . ',
-				"breadcrumb" : ' . $_categoryBreadcrumb . '}]';
+                "id": "' . $_category->getId() . '",
+                "name": "' . htmlspecialchars($_category->getName()) . '",
+                "parent": ' . $_categoryParent . ',
+                "breadcrumb" : ' . $_categoryBreadcrumb . '}]';
     } else {
         $_category = '[{"id": "-1", "name": "no category", "parent": false}]';
     }
     ?>
+
+    var _ra = _ra || {};
+    _ra.sendProductInfo = {
+        "id": "<?php echo $_product->getId(); ?>",
+        "name": "<?php echo htmlspecialchars($_product->getName()); ?>",
+        "url": "<?php echo htmlspecialchars(strtok($_productUrl, '?')); ?>",
+        "img": "<?php echo htmlspecialchars(Mage::helper('catalog/image')->init($_product, 'image')->resize(500)); ?>",
+        "price": <?php echo Mage::helper('tax')->getPrice($_product, $_product->getPrice()); ?>,
+        "promo": <?php echo(Mage::helper('tax')->getPrice($_product, $_product->getPrice()) - Mage::helper('tax')->getPrice($_product, $_product->getFinalPrice()) > 0 ? Mage::helper('tax')->getPrice($_product, $_product->getFinalPrice()) : 0); ?>,
+        "inventory": {
+            "variations": false,
+            "stock": <?php echo $_product->getIsInStock() ?>
+        },
+        "brand": false,
+        "category": <?php echo $_category; ?>
+    };
+
+    if (_ra.ready !== undefined) {
+        if (typeof _ra.sendProduct !== "undefined") {
+            _ra.sendProduct(_ra.sendProductInfo);
+        }
+    }
 
     var _ra = _ra || {};
     _ra.addToCartInfo = {
@@ -251,7 +277,6 @@
     if (typeof _ra.addToCart !== "undefined") {
         _ra.addToCart(_ra.addToCartInfo.product_id, _ra.addToCartInfo.quantity, _ra.addToCartInfo.variation);
     }
-
 
     <?php else : ?>
 
@@ -276,18 +301,18 @@
     /*
         ----------------------- Trigger setVariation -----------------------
     */
-    if($magentoVersion > "1.4.2.0") :
+    if ($magentoVersion > "1.4.2.0") :
     ?>
-    <?php if ( Mage::app()->getFrontController()->getRequest()->getControllerName() == "product" && !is_null(Mage::registry('product')) ) : ?>
+    <?php if (Mage::app()->getFrontController()->getRequest()->getControllerName() == "product" && !is_null(Mage::registry('product'))) : ?>
 
     // Trigger setVariation
 
     <?php $_product = Mage::registry('current_product'); ?>
     <?php if ($_product) : ?>
 
-    <?php if ( !$_product->isConfigurable() ) : ?>
+    <?php if (!$_product->isConfigurable()) : ?>
     <?php /*is not configurable*/ ?>
-    <?php if ( $_product->getTypeInstance(true)->hasOptions($_product) ) : ?>
+    <?php if ($_product->getTypeInstance(true)->hasOptions($_product)) : ?>
 
     function _ra_triggerSetVariation() {
         var _ra_variation = _ra_grabVariation();
@@ -301,24 +326,24 @@
         var _ra_vo = {};
         var _ra_voCode = [];
         var _ra_voDetails = {};
-        <?php foreach ( $_product->getOptions() as $o ) : ?>
+        <?php foreach ($_product->getOptions() as $o) : ?>
         <?php $optionType = $o->getType(); ?>
         <?php $optionId = $o->getId(); ?>
         <?php $optionTitle = $o->getTitle(); ?>
 
-        <?php if ( $optionType == "area" ) : ?>
+        <?php if ($optionType == "area") : ?>
         if (document.querySelector(".product-custom-option[name='options[<?php echo $optionId; ?>]']") !== null) {
             _ra_voCode.push(document.querySelector(".product-custom-option[name='options[<?php echo $optionId; ?>]']").value);
         }
         <?php endif ?>
 
-        <?php if ( $optionType == "field" ) : ?>
+        <?php if ($optionType == "field") : ?>
         if (document.querySelector(".product-custom-option[name='options[<?php echo $optionId; ?>]']") !== null) {
             _ra_voCode.push(document.querySelector(".product-custom-option[name='options[<?php echo $optionId; ?>]']").value);
         }
         <?php endif ?>
 
-        <?php if ( $optionType == "checkbox" ) : ?>
+        <?php if ($optionType == "checkbox") : ?>
         if (document.querySelectorAll("input[type='checkbox'].product-custom-option[name='options[<?php echo $optionId; ?>][]']").length > 0) {
             var _ra_optionValue = [];
             var _ra_arr = document.querySelectorAll("input[type='checkbox'].product-custom-option[name='options[<?php echo $optionId; ?>][]']");
@@ -331,7 +356,7 @@
         }
         <?php endif ?>
 
-        <?php if ( $optionType == "date" ) : ?>
+        <?php if ($optionType == "date") : ?>
         if (document.querySelector(".datetime-picker.product-custom-option[name='options[<?php echo $optionId; ?>][month]']") !== null && document.querySelector(".datetime-picker.product-custom-option[name='options[<?php echo $optionId; ?>][day]']") !== null && document.querySelector(".datetime-picker.product-custom-option[name='options[<?php echo $optionId; ?>][year]']") !== null) {
             var _ra_optionValue = [];
             _ra_optionValue.push(document.querySelector(".datetime-picker.product-custom-option[name='options[<?php echo $optionId; ?>][month]']").options[document.querySelector(".datetime-picker.product-custom-option[name='options[<?php echo $optionId; ?>][month]']").selectedIndex].text);
@@ -341,7 +366,7 @@
         }
         <?php endif ?>
 
-        <?php if ( $optionType == "date_time" ) : ?>
+        <?php if ($optionType == "date_time") : ?>
         if (document.querySelector(".datetime-picker.product-custom-option[name='options[<?php echo $optionId; ?>][month]']") !== null && document.querySelector(".datetime-picker.product-custom-option[name='options[<?php echo $optionId; ?>][day]']") !== null && document.querySelector(".datetime-picker.product-custom-option[name='options[<?php echo $optionId; ?>][year]']") !== null && document.querySelector(".datetime-picker.product-custom-option[name='options[<?php echo $optionId; ?>][hour]']") !== null && document.querySelector(".datetime-picker.product-custom-option[name='options[<?php echo $optionId; ?>][minute]']") !== null && document.querySelector(".datetime-picker.product-custom-option[name='options[<?php echo $optionId; ?>][day_part]']") !== null) {
             var _ra_optionValue = [];
             _ra_optionValue.push(document.querySelector(".datetime-picker.product-custom-option[name='options[<?php echo $optionId; ?>][month]']").options[document.querySelector(".datetime-picker.product-custom-option[name='options[<?php echo $optionId; ?>][month]']").selectedIndex].text);
@@ -354,12 +379,12 @@
         }
         <?php endif ?>
 
-        <?php if ( $optionType == "drop_down" ) : ?>
+        <?php if ($optionType == "drop_down") : ?>
         if (document.querySelector("select.product-custom-option[name='options[<?php echo $optionId; ?>]']").value !== null) {
             _ra_voCode.push(document.querySelector("select.product-custom-option[name='options[<?php echo $optionId; ?>]']").options[document.querySelector("select.product-custom-option[name='options[<?php echo $optionId; ?>]']").selectedIndex].text);
         }
         <?php endif ?>
-        <?php if ( $optionType == "multiple" ) : ?>
+        <?php if ($optionType == "multiple") : ?>
         if (document.querySelector("select.multiselect.product-custom-option[name='options[<?php echo $optionId; ?>][]']") !== null) {
             var _ra_optionValue = [];
             var _ra_arr = document.querySelector("select.multiselect.product-custom-option[name='options[<?php echo $optionId; ?>][]']").options;
@@ -372,7 +397,7 @@
         }
         <?php endif ?>
 
-        <?php if ( $optionType == "radio" ) : ?>
+        <?php if ($optionType == "radio") : ?>
         if (document.querySelectorAll("input[type='radio'].product-custom-option[name='options[<?php echo $optionId; ?>]']").length > 0) {
             var _ra_optionValue = [];
             var _ra_arr = document.querySelectorAll("input[type='radio'].product-custom-option[name='options[<?php echo $optionId; ?>]']");
@@ -384,7 +409,7 @@
             _ra_voCode.push(_ra_optionValue.join(', '));
         }
         <?php endif ?>
-        <?php if ( $optionType == "time" ) : ?>
+        <?php if ($optionType == "time") : ?>
         if (document.querySelector(".datetime-picker.product-custom-option[name='options[<?php echo $optionId; ?>][hour]']") !== null && document.querySelector(".datetime-picker.product-custom-option[name='options[<?php echo $optionId; ?>][minute]']") !== null && document.querySelector(".datetime-picker.product-custom-option[name='options[<?php echo $optionId; ?>][day_part]']") !== null) {
             var _ra_optionValue = [];
             _ra_optionValue.push(document.querySelector(".datetime-picker.product-custom-option[name='options[<?php echo $optionId; ?>][hour]']").options[document.querySelector(".datetime-picker.product-custom-option[name='options[<?php echo $optionId; ?>][hour]']").selectedIndex].text);
@@ -394,7 +419,7 @@
         }
         <?php endif ?>
 
-        <?php if ( $optionType == "file" ) : ?>
+        <?php if ($optionType == "file") : ?>
         if (document.querySelector("input[type='file'].product-custom-option[name='options_<?php echo $optionId; ?>_file']") !== null) {
             _ra_voCode.push(document.querySelector("input[type='file'].product-custom-option[name='options_<?php echo $optionId; ?>_file']").value.split(/(\\|\/)/g).pop());
         }
@@ -417,11 +442,11 @@
         return _ra_vo;
     }
     _ra_helper_addLoadEvent(function () {
-        <?php foreach ( $_product->getOptions() as $o ) : ?>
+        <?php foreach ($_product->getOptions() as $o) : ?>
         <?php $optionType = $o->getType(); ?>
         <?php $optionId = $o->getId(); ?>
 
-        <?php if ( $optionType == "area" ) : ?>
+        <?php if ($optionType == "area") : ?>
         if (document.querySelector(".product-custom-option[name='options[<?php echo $optionId; ?>]']") !== null) {
             _ra_optElfunc[<?php echo $optionId; ?>] = document.querySelector(".product-custom-option[name='options[<?php echo $optionId; ?>]']").onchange;
             document.querySelector(".product-custom-option[name='options[<?php echo $optionId; ?>]']").onchange = function () {
@@ -431,7 +456,7 @@
         }
         <?php endif ?>
 
-        <?php if ( $optionType == "field" ) : ?>
+        <?php if ($optionType == "field") : ?>
         if (document.querySelector(".product-custom-option[name='options[<?php echo $optionId; ?>]']") !== null) {
             _ra_optElfunc[<?php echo $optionId; ?>] = document.querySelector(".product-custom-option[name='options[<?php echo $optionId; ?>]']").onchange;
             document.querySelector(".product-custom-option[name='options[<?php echo $optionId; ?>]']").onchange = function () {
@@ -441,7 +466,7 @@
         }
         <?php endif ?>
 
-        <?php if ( $optionType == "checkbox" ) : ?>
+        <?php if ($optionType == "checkbox") : ?>
         if (document.querySelectorAll("input[type='checkbox'].product-custom-option[name='options[<?php echo $optionId; ?>][]']").length > 0) {
             _ra_optElfunc[<?php echo $optionId; ?>] = [];
             for (var index = 0; index < document.querySelectorAll("input[type='checkbox'].product-custom-option[name='options[<?php echo $optionId; ?>][]']").length; index++) {
@@ -456,7 +481,7 @@
         }
         <?php endif ?>
 
-        <?php if ( $optionType == "date" ) : ?>
+        <?php if ($optionType == "date") : ?>
         if (document.querySelector(".datetime-picker.product-custom-option[name='options[<?php echo $optionId; ?>][month]']") !== null && document.querySelector(".datetime-picker.product-custom-option[name='options[<?php echo $optionId; ?>][day]']") !== null && document.querySelector(".datetime-picker.product-custom-option[name='options[<?php echo $optionId; ?>][year]']") !== null) {
             _ra_optElfunc[<?php echo $optionId; ?>] = [];
             _ra_optElfunc[<?php echo $optionId; ?>][0] = document.querySelector(".datetime-picker.product-custom-option[name='options[<?php echo $optionId; ?>][month]']").onchange;
@@ -477,7 +502,7 @@
         }
         <?php endif ?>
 
-        <?php if ( $optionType == "date_time" ) : ?>
+        <?php if ($optionType == "date_time") : ?>
         if (document.querySelector(".datetime-picker.product-custom-option[name='options[<?php echo $optionId; ?>][month]']") !== null && document.querySelector(".datetime-picker.product-custom-option[name='options[<?php echo $optionId; ?>][day]']") !== null && document.querySelector(".datetime-picker.product-custom-option[name='options[<?php echo $optionId; ?>][year]']") !== null && document.querySelector(".datetime-picker.product-custom-option[name='options[<?php echo $optionId; ?>][hour]']") !== null && document.querySelector(".datetime-picker.product-custom-option[name='options[<?php echo $optionId; ?>][minute]']") !== null && document.querySelector(".datetime-picker.product-custom-option[name='options[<?php echo $optionId; ?>][day_part]']") !== null) {
             _ra_optElfunc[<?php echo $optionId; ?>] = [];
             _ra_optElfunc[<?php echo $optionId; ?>][0] = document.querySelector(".datetime-picker.product-custom-option[name='options[<?php echo $optionId; ?>][month]']").onchange;
@@ -513,7 +538,7 @@
         }
         <?php endif ?>
 
-        <?php if ( $optionType == "drop_down" ) : ?>
+        <?php if ($optionType == "drop_down") : ?>
         if (document.querySelector("select.product-custom-option[name='options[<?php echo $optionId; ?>]']") !== null) {
             _ra_optElfunc[<?php echo $optionId; ?>] = document.querySelector("select.product-custom-option[name='options[<?php echo $optionId; ?>]']").onchange;
             document.querySelector("select.product-custom-option[name='options[<?php echo $optionId; ?>]']").onchange = function () {
@@ -525,7 +550,7 @@
         }
         <?php endif ?>
 
-        <?php if ( $optionType == "multiple" ) : ?>
+        <?php if ($optionType == "multiple") : ?>
         if (document.querySelector("select.multiselect.product-custom-option[name='options[<?php echo $optionId; ?>][]']") !== null) {
             _ra_optElfunc[<?php echo $optionId; ?>] = document.querySelector("select.multiselect.product-custom-option[name='options[<?php echo $optionId; ?>][]']").onchange;
             document.querySelector("select.multiselect.product-custom-option[name='options[<?php echo $optionId; ?>][]']").onchange = function () {
@@ -535,7 +560,7 @@
         }
         <?php endif ?>
 
-        <?php if ( $optionType == "radio" ) : ?>
+        <?php if ($optionType == "radio") : ?>
         if (document.querySelectorAll("input[type='radio'].product-custom-option[name='options[<?php echo $optionId; ?>]']").length > 0) {
             _ra_optElfunc[<?php echo $optionId; ?>] = [];
             for (var index = 0; index < document.querySelectorAll("input[type='radio'].product-custom-option[name='options[<?php echo $optionId; ?>]']").length; index++) {
@@ -550,7 +575,7 @@
         }
         <?php endif ?>
 
-        <?php if ( $optionType == "time" ) : ?>
+        <?php if ($optionType == "time") : ?>
         if (document.querySelector(".datetime-picker.product-custom-option[name='options[<?php echo $optionId; ?>][hour]']") !== null && document.querySelector(".datetime-picker.product-custom-option[name='options[<?php echo $optionId; ?>][minute]']") !== null && document.querySelector(".datetime-picker.product-custom-option[name='options[<?php echo $optionId; ?>][day_part]']") !== null) {
             _ra_optElfunc[<?php echo $optionId; ?>] = [];
             _ra_optElfunc[<?php echo $optionId; ?>][0] = document.querySelector(".datetime-picker.product-custom-option[name='options[<?php echo $optionId; ?>][hour]']").onchange;
@@ -571,7 +596,7 @@
         }
         <?php endif ?>
 
-        <?php if ( $optionType == "file" ) : ?>
+        <?php if ($optionType == "file") : ?>
         if (document.querySelector("input[type='file'].product-custom-option[name='options_<?php echo $optionId; ?>_file']") !== null) {
             _ra_optElfunc[<?php echo $optionId; ?>] = document.querySelector("input[type='file'].product-custom-option[name='options_<?php echo $optionId; ?>_file']").onchange;
             document.querySelector("input[type='file'].product-custom-option[name='options_<?php echo $optionId; ?>_file']").onchange = function () {
@@ -592,7 +617,7 @@
     <?php /*is configurable*/ ?>
     /*configurable product..*/
     <?php $_productAttributeOptions = $_product->getTypeInstance(true)->getConfigurableAttributesAsArray($_product); ?>
-    <?php if ( count($_productAttributeOptions) > 0 ) : ?>
+    <?php if (count($_productAttributeOptions) > 0) : ?>
 
     function _ra_triggerSetVariation() {
         var _ra_variation = _ra_grabVariation();
@@ -653,7 +678,7 @@
 
     <?php endif ?>
     <?php endif ?>
-    <?php endif //magento version ?>
+    <?php                                                                                                         endif //magento version ?>
 
 
     <?php
@@ -661,12 +686,13 @@
         ----------------------- Trigger addToWishlist -----------------------
     */
     ?>
-    <?php if ( $info = Mage::getSingleton('core/session')->getTriggerAddToWishlist() ) : ?>
+    <?php if ($info = Mage::getSingleton('core/session')->getTriggerAddToWishlist()) : ?>
 
     // Trigger addToWishlist
 
-    <?php $referral = Mage::getSingleton('core/session')->getReferralController(); echo "/*" . $referral . "*/"; ?>
-    <?php if ( $referral != "product" ) : ?>
+    <?php $referral = Mage::getSingleton('core/session')->getReferralController();
+    echo "/*" . $referral . "*/"; ?>
+    <?php if ($referral != "product") : ?>
 
     // Trigger sendProduct before addToWishlist
 
@@ -693,18 +719,18 @@
                 $breadcrumbCategory = Mage::getModel('catalog/category')->load($breadcrumbCategory->getParentId());
 
                 $_categoryBreadcrumb[] = '{
-						"id": "' . $breadcrumbCategory->getId() . '",
-						"name": "' . htmlspecialchars($breadcrumbCategory->getName()) . '",
-						"parent": ' . ($breadcrumbCategory->getLevel() > 2 ? '"' . $breadcrumbCategory->getParentId() . '"' : 'false') . '
-					}';
+                        "id": "' . $breadcrumbCategory->getId() . '",
+                        "name": "' . htmlspecialchars($breadcrumbCategory->getName()) . '",
+                        "parent": ' . ($breadcrumbCategory->getLevel() > 2 ? '"' . $breadcrumbCategory->getParentId() . '"' : 'false') . '
+                    }';
             }
             $_categoryBreadcrumb = '[' . implode(', ', $_categoryBreadcrumb) . ']';
         }
         $_category = '[{
-				"id": "' . $_category->getId() . '",
-				"name": "' . htmlspecialchars($_category->getName()) . '",
-				"parent": ' . $_categoryParent . ',
-				"breadcrumb" : ' . $_categoryBreadcrumb . '}]';
+                "id": "' . $_category->getId() . '",
+                "name": "' . htmlspecialchars($_category->getName()) . '",
+                "parent": ' . $_categoryParent . ',
+                "breadcrumb" : ' . $_categoryBreadcrumb . '}]';
     } else {
         $_category = '[{"id": "-1", "name": "no category", "parent": false}]';
     }
@@ -743,18 +769,18 @@
         ----------------------- Trigger clickImage -----------------------
     */
     ?>
-    <?php if ( Mage::app()->getFrontController()->getRequest()->getControllerName() == "product" && !is_null(Mage::registry('product')) ) : ?>
+    <?php if (Mage::app()->getFrontController()->getRequest()->getControllerName() == "product" && !is_null(Mage::registry('product'))) : ?>
 
     // Trigger clickImage
 
     <?php
     $_product = Mage::registry('current_product');
-    if($_product) :
+    if ($_product) :
     ?>
     <?php
 
     $customClass = Mage::helper('retargeting_tracker')->getCustomClass();
-    if(Mage::helper('retargeting_tracker')->getCustomClass() != "") :
+    if (Mage::helper('retargeting_tracker')->getCustomClass() != "") :
     ?>
 
     function _ra_triggerClickImage() {
@@ -768,7 +794,7 @@
         }
     });
     //custom css
-    <?php else : ?>
+    <?php                                                                                                         else : ?>
     function _ra_triggerClickImage() {
         if (typeof _ra.clickImage !== "undefined") {
             _ra.clickImage("<?php echo $_product->getId(); ?>");
@@ -792,7 +818,7 @@
         }
     });
     <?php endif //customcss?>
-    <?php endif //endif product ?>
+    <?php                                                                                                         endif //endif product ?>
     <?php endif ?>
 
 
@@ -802,7 +828,7 @@
         ----------------------- Trigger commentOnProduct -----------------------
     */
     ?>
-    <?php if ( $info = Mage::getSingleton('core/session')->getTriggerCommentOnProduct() ) : ?>
+    <?php if ($info = Mage::getSingleton('core/session')->getTriggerCommentOnProduct()) : ?>
 
     // Trigger commentOnProduct
 
@@ -827,12 +853,12 @@
         ----------------------- Trigger mouseOverPrice -----------------------
     */
     ?>
-    <?php if ( Mage::app()->getFrontController()->getRequest()->getControllerName() == "product" && !is_null(Mage::registry('product')) ) : ?>
+    <?php if (Mage::app()->getFrontController()->getRequest()->getControllerName() == "product" && !is_null(Mage::registry('product'))) : ?>
 
     // Trigger mouseOverPrice
 
     <?php $_product = Mage::registry('current_product'); ?>
-    <?php if($_product): ?>
+    <?php if ($_product) : ?>
     function _ra_triggerMouseOverPrice() {
         if (typeof _ra.mouseOverPrice !== "undefined") {
             _ra.mouseOverPrice("<?php echo $_product->getId(); ?>", {
@@ -861,12 +887,12 @@
         ----------------------- Trigger mouseOverAddToCart -----------------------
     */
     ?>
-    <?php if ( Mage::app()->getFrontController()->getRequest()->getControllerName() == "product" && !is_null(Mage::registry('product')) ) : ?>
+    <?php if (Mage::app()->getFrontController()->getRequest()->getControllerName() == "product" && !is_null(Mage::registry('product'))) : ?>
 
     // Trigger mouseOverAddToCart
 
     <?php $_product = Mage::registry('current_product'); ?>
-    <?php if($_product): ?>
+    <?php if ($_product) : ?>
     function _ra_triggerMouseOverAddToCart() {
         if (typeof _ra.mouseOverAddToCart !== "undefined") {
             _ra.mouseOverAddToCart("<?php echo $_product->getId(); ?>");
@@ -891,7 +917,7 @@
         ----------------------- Trigger saveOrder -----------------------
     */
     ?>
-    <?php if ( $info = Mage::getSingleton('core/session')->getTriggerSaveOrder() ) : ?>
+    <?php if ($info = Mage::getSingleton('core/session')->getTriggerSaveOrder()) : ?>
 
     // Trigger saveOrder
 
@@ -928,7 +954,7 @@
         ----------------------- Trigger visitHelpPage -----------------------
     */
     ?>
-    <?php if ( Mage::app()->getFrontController()->getRequest()->getRouteName() == 'cms' ) : ?>
+    <?php if (Mage::app()->getFrontController()->getRequest()->getRouteName() == 'cms') : ?>
 
     <?php
     $page = Mage::getSingleton('cms/page');
@@ -936,7 +962,7 @@
     $helpPages = explode(',', $helpPages);
     ?>
 
-    <?php if ( $page->getId() && in_array($page->getId(), $helpPages) ) : ?>
+    <?php if ($page->getId() && in_array($page->getId(), $helpPages)) : ?>
 
     // Trigger visitHelpPage
 
@@ -970,7 +996,7 @@
     $action = $request->getActionName();
     ?>
     <?php
-    if (    ($module == 'checkout' && $controller == 'cart' && $action == 'index') || ($module == 'checkout' && $controller == 'onepage' && $action == 'index') || (Mage::getURL('checkout/onepage') == Mage::helper('core/url')->getCurrentUrl()) || (strrpos(Mage::helper('core/url')->getCurrentUrl(), "/onestepcheckout") !== false)
+    if (($module == 'checkout' && $controller == 'cart' && $action == 'index') || ($module == 'checkout' && $controller == 'onepage' && $action == 'index') || (Mage::getURL('checkout/onepage') == Mage::helper('core/url')->getCurrentUrl()) || (strrpos(Mage::helper('core/url')->getCurrentUrl(), "/onestepcheckout") !== false)
     ) : ?>
 
     // Trigger checkoutIds
@@ -993,12 +1019,12 @@
         }
     }
 
-    <?php endif ?>
+    <?php                                                                                                         endif ?>
 
 
     <?php // likeFacebook
     $_product = Mage::registry('current_product');
-    if($_product && Mage::helper('retargeting_tracker')->isFacebookAvailable()) :
+    if ($_product && Mage::helper('retargeting_tracker')->isFacebookAvailable()) :
     ?>
 
     if (typeof FB != "undefined") {
@@ -1006,12 +1032,12 @@
             _ra.likeFacebook(<?php echo $_product->getId()?>);
         });
     }
-    <?php endif; //end like facebook ?>
+    <?php                                                                                                         endif; //end like facebook ?>
 
 </script>
 <?php
 /*
-	----------------------- Track URL History --------------------------
+    ----------------------- Track URL History --------------------------
 */
 ?>
 <?php
