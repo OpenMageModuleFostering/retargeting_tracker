@@ -105,7 +105,7 @@ class Retargeting_Tracker_DiscountsController extends Mage_Core_Controller_Front
             }
 
             // discount availability
-            //$rule->setFromDate(date('Y-m-d'))->setToDate(Date('Y-m-d', strtotime("+".$availability." days")));
+            $rule->setFromDate(date('Y-m-d'));
 
             // discount conditions/actions
             /*
