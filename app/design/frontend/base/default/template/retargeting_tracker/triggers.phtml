@@ -38,9 +38,7 @@
 */ 
 ?>
 <?php if ( $info = Mage::getSingleton('core/session')->getTriggerSetEmail() ) : ?>
-	
 	// Trigger setEmail
-
 	var _ra = _ra || {};
 	_ra.setEmailInfo = {
 		"email": "<?php  echo htmlspecialchars($info['email']); ?>",
@@ -49,16 +47,11 @@
 		"city": "<?php  echo htmlspecialchars($info['city']); ?>",
 		"sex": "<?php  echo htmlspecialchars($info['sex']); ?>"
 	};
-	
 	if (_ra.ready !== undefined) {
 		if(typeof _ra.setEmail !== "undefined") _ra.setEmail(_ra.setEmailInfo);
 	}
-
 	<?php Mage::getSingleton('core/session')->unsTriggerSetEmail(); ?>
 <?php endif ?>
-
-
-
 <?php 
 /*
 	----------------------- Trigger sendCategory -----------------------
@@ -102,18 +95,12 @@
 	}
 
 <?php endif ?>
-
-
-
 <?php 
 /*
 	----------------------- Trigger sendBrand -----------------------
 	magento doesn't have core support for brands..
 */ 
 ?>
-
-
-
 <?php 
 /*
 	----------------------- Trigger sendProduct -----------------------
@@ -124,6 +111,8 @@
 	// Trigger sendProduct
 	
 	<?php $_product = Mage::registry('current_product'); ?>
+	
+	<?php if($_product) : ?>
 	<?php
 		$_productUrl = Mage::helper('core/url')->getCurrentUrl(); 
 
@@ -168,7 +157,7 @@
 		"id": "<?php echo $_product->getId(); ?>",
 		"name": "<?php echo htmlspecialchars($_product->getName()); ?>",
 		"url": "<?php echo htmlspecialchars($_productUrl); ?>",
-	  	"img": "<?php echo  htmlspecialchars(Mage::helper('catalog/image')->init($_product, 'thumbnail')); ?>", 
+	  	"img": "<?php echo $_product->getThumbnail() != 'no_selection' ? htmlspecialchars(Mage::helper('catalog/image')->init($_product, 'thumbnail')) : htmlspecialchars(Mage::helper('catalog/image')->init($_product, 'image')->resize(500)); ?>", 
 	  	"price": <?php echo Mage::helper('tax')->getPrice($_product, $_product->getPrice()); ?>,
 		"promo": <?php echo ( Mage::helper('tax')->getPrice($_product, $_product->getPrice()) - Mage::helper('tax')->getPrice($_product, $_product->getFinalPrice()) > 0 ? Mage::helper('tax')->getPrice($_product, $_product->getFinalPrice()) : 0 ); ?>,
 		"stock": <?php echo $_product->getIsInStock() ?>,
@@ -176,15 +165,12 @@
 		"category": <?php echo $_category; ?>,
 		"category_breadcrumb": <?php echo $_categoryBreadcrumb; ?>
 	};
-	
+
 	if (_ra.ready !== undefined) {
 		if(typeof _ra.sendProduct !== "undefined") _ra.sendProduct(_ra.sendProductInfo);
 	}
-
+<?php endif ?> 
 <?php endif ?>
-
-
-
 <?php 
 /*
 	----------------------- Trigger addToCart -----------------------
@@ -240,7 +226,7 @@
 		"id": "<?php echo $_product->getId(); ?>",
 		"name": "<?php echo htmlspecialchars($_product->getName()); ?>",
 		"url": "<?php echo htmlspecialchars($_productUrl); ?>", 
-	  	"img": "<?php echo  htmlspecialchars(Mage::helper('catalog/image')->init($_product, 'thumbnail')); ?>", 
+	  	"img": "<?php echo $_product->getThumbnail() != 'no_selection' ? htmlspecialchars(Mage::helper('catalog/image')->init($_product, 'thumbnail')) : htmlspecialchars(Mage::helper('catalog/image')->init($_product, 'image')->resize(500)); ?>", 
 	  	"price": <?php echo Mage::helper('tax')->getPrice($_product, $_product->getPrice()); ?>,
 		"promo": <?php echo ( Mage::helper('tax')->getPrice($_product, $_product->getPrice()) - Mage::helper('tax')->getPrice($_product, $_product->getFinalPrice()) > 0 ? Mage::helper('tax')->getPrice($_product, $_product->getFinalPrice()) : 0 ); ?>,
 		"stock": <?php echo $_product->getIsInStock() ?>,
@@ -276,9 +262,6 @@
 
 	<?php Mage::getSingleton('core/session')->unsTriggerAddToCart(); ?>
 <?php endif ?>
-
-
-
 <?php 
 /*
 	----------------------- Trigger setVariation -----------------------
@@ -289,8 +272,8 @@
 	// Trigger setVariation
 
 	<?php $_product = Mage::registry('current_product'); ?>
-
-	/*<?php print_r($_product->isConfigurable()); ?>*/
+<?php if ($_product) : ?>
+	
 	<?php if ( !$_product->isConfigurable() ) : ?>
 		<?php /*is not configurable*/ ?>
 		<?php if ( $_product->getTypeInstance(true)->hasOptions($_product) ) : ?>
@@ -302,9 +285,6 @@
 		
 
 		_ra_optElfunc = [];
-		
-
-
 		function _ra_grabVariation() {
 			var _ra_vo = {};
 			var _ra_voCode = [];
@@ -313,7 +293,6 @@
 	        <?php $optionType = $o->getType(); ?>
 	        <?php $optionId = $o->getId(); ?>
 	        <?php $optionTitle = $o->getTitle(); ?>
-
 	        
 	        <?php if ( $optionType == "area" ) : ?>
 	        if ( document.querySelector(".product-custom-option[name='options[<?php echo $optionId; ?>]']") !== null ) {
@@ -368,7 +347,6 @@
 				_ra_voCode.push(document.querySelector("select.product-custom-option[name='options[<?php echo $optionId; ?>]']").options[document.querySelector("select.product-custom-option[name='options[<?php echo $optionId; ?>]']").selectedIndex].text);
 	        }
 	        <?php endif ?>
-
 	        <?php if ( $optionType == "multiple" ) : ?>
 	        if ( document.querySelector("select.multiselect.product-custom-option[name='options[<?php echo $optionId; ?>][]']") !== null ) {
 	        	var _ra_optionValue = [];
@@ -392,7 +370,6 @@
 	        	_ra_voCode.push(_ra_optionValue.join(', '));
 	        }
 	        <?php endif ?>
-
 	        <?php if ( $optionType == "time" ) : ?>
 	        if ( document.querySelector(".datetime-picker.product-custom-option[name='options[<?php echo $optionId; ?>][hour]']") !== null && document.querySelector(".datetime-picker.product-custom-option[name='options[<?php echo $optionId; ?>][minute]']") !== null && document.querySelector(".datetime-picker.product-custom-option[name='options[<?php echo $optionId; ?>][day_part]']") !== null ) {
 	        	var _ra_optionValue = [];
@@ -422,15 +399,9 @@
 	    		"code": _ra_voCode.join('-'),
 	    		"details": _ra_voDetails
 	    	}
-
 	    	return _ra_vo;
 		}
-
-
-
-
 		_ra_helper_addLoadEvent(function() {
-		
 		<?php foreach ( $_product->getOptions() as $o ) : ?>
 	        <?php $optionType = $o->getType(); ?>
 	        <?php $optionId = $o->getId(); ?>
@@ -655,6 +626,7 @@
 
 
 <?php endif ?>
+<?php endif ?>
 
 
 
@@ -713,7 +685,7 @@
 		"id": "<?php echo $_product->getId(); ?>",
 		"name": "<?php echo htmlspecialchars($_product->getName()); ?>",
 		"url": "<?php echo htmlspecialchars($_productUrl); ?>", 
-	  	"img": "<?php echo  htmlspecialchars(Mage::helper('catalog/image')->init($_product, 'thumbnail')); ?>", 
+	  	"img": "<?php echo $_product->getThumbnail() != 'no_selection' ? htmlspecialchars(Mage::helper('catalog/image')->init($_product, 'thumbnail')) : htmlspecialchars(Mage::helper('catalog/image')->init($_product, 'image')->resize(500)); ?>", 
 	  	"price": <?php echo Mage::helper('tax')->getPrice($_product, $_product->getPrice()); ?>,
 		"promo": <?php echo ( Mage::helper('tax')->getPrice($_product, $_product->getPrice()) - Mage::helper('tax')->getPrice($_product, $_product->getFinalPrice()) > 0 ? Mage::helper('tax')->getPrice($_product, $_product->getFinalPrice()) : 0 ); ?>,
 		"stock": <?php echo $_product->getIsInStock() ?>,
@@ -759,29 +731,49 @@
 
 	// Trigger clickImage
 
-	<?php $_product = Mage::registry('current_product'); ?>
+    <?php
+        $_product = Mage::registry('current_product');
+        if($_product) :
+    ?>
+<?php
 
-	function _ra_triggerClickImage() {
-		if(typeof _ra.clickImage !== "undefined") _ra.clickImage("<?php echo $_product->getId(); ?>");
-	}
+$customClass = Mage::helper('retargeting_tracker')->getCustomClass();
+    if(Mage::helper('retargeting_tracker')->getCustomClass() != "") :
+?>
 
-	_ra_helper_addLoadEvent(function() {
-		if ( document.getElementsByClassName("zoomWindow").length > 0 ) {
-			document.getElementsByClassName("zoomWindow")[0].onmouseover  = _ra_triggerClickImage;
-		}
-		if ( document.getElementsByClassName("zoomLens").length > 0 ) {
-			document.getElementsByClassName("zoomLens")[0].onmouseover  = _ra_triggerClickImage;
-		}
-		if ( document.getElementsByClassName("MagicToolboxContainer").length > 0 ) {
-			document.getElementsByClassName("MagicZoomBigImageCont")[0].onmouseover  = _ra_triggerClickImage;
-		}
-		if ( document.getElementById("image") !== null ) {
-			document.getElementById("image").onclick = _ra_triggerClickImage;
-		} else if ( document.querySelector(".product-image img") !== null ) {
-			var el = document.querySelector(".product-image img").onclick = _ra_triggerClickImage;
-		}
-	});
+    function _ra_triggerClickImage() {
+        if(typeof _ra.clickImage !== "undefined") _ra.clickImage("<?php echo $_product->getId(); ?>");
+    }
+_ra_helper_addLoadEvent(function() {
+    if ( document.getElementsByClassName("<?php echo $customClass ?>").length > 0 ) {
+        document.getElementsByClassName("<?php echo $customClass ?>")[0].onmouseover  = _ra_triggerClickImage;
 
+    }
+});
+//custom css
+<?php else : ?>
+        function _ra_triggerClickImage() {
+            if(typeof _ra.clickImage !== "undefined") _ra.clickImage("<?php echo $_product->getId(); ?>");
+        }
+
+        _ra_helper_addLoadEvent(function() {
+            if ( document.getElementsByClassName("zoomWindow").length > 0 ) {
+                document.getElementsByClassName("zoomWindow")[0].onmouseover  = _ra_triggerClickImage;
+            }
+            if ( document.getElementsByClassName("zoomLens").length > 0 ) {
+                document.getElementsByClassName("zoomLens")[0].onmouseover  = _ra_triggerClickImage;
+            }
+            if ( document.getElementsByClassName("MagicToolboxContainer").length > 0 ) {
+                document.getElementsByClassName("MagicZoomBigImageCont")[0].onmouseover  = _ra_triggerClickImage;
+            }
+            if ( document.getElementById("image") !== null ) {
+                document.getElementById("image").onclick = _ra_triggerClickImage;
+            } else if ( document.querySelector(".product-image img") !== null ) {
+                var el = document.querySelector(".product-image img").onclick = _ra_triggerClickImage;
+            }
+        });
+        <?php endif //customcss?>
+    <?php endif //endif product ?>
 <?php endif ?>
 
 
@@ -819,7 +811,7 @@
 	// Trigger mouseOverPrice
 
 	<?php $_product = Mage::registry('current_product'); ?>
-
+<?php if($_product): ?>
 	function _ra_triggerMouseOverPrice() {
 		if(typeof _ra.mouseOverPrice !== "undefined") _ra.mouseOverPrice("<?php echo $_product->getId(); ?>", {
 			"price": <?php echo Mage::helper('tax')->getPrice($_product, $_product->getPrice()); ?>,
@@ -837,6 +829,7 @@
 	});
 
 <?php endif ?>
+<?php endif ?>
 
 
 
@@ -850,7 +843,7 @@
 	// Trigger mouseOverAddToCart
 
 	<?php $_product = Mage::registry('current_product'); ?>
-
+<?php if($_product): ?>
 	function _ra_triggerMouseOverAddToCart() {
 		if(typeof _ra.mouseOverAddToCart !== "undefined") _ra.mouseOverAddToCart("<?php echo $_product->getId(); ?>");
 	}
@@ -863,6 +856,7 @@
 		}
 	});
 
+<?php endif ?>
 <?php endif ?>
 
 
@@ -972,9 +966,20 @@
 
 <?php endif ?>
 
+
+<?php // likeFacebook
+$_product = Mage::registry('current_product');
+if($_product && Mage::helper('retargeting_tracker')->isFacebookAvailable()) :
+?>
+
+if (typeof FB != "undefined") {
+    FB.Event.subscribe('edge.create', function () {
+            _ra.likeFacebook(<?php echo $_product->getId()?>);
+        });
+    };
+<?php endif; //end like facebook ?>
+
 </script>
-
-
 <?php
 /*
 	----------------------- Track URL History --------------------------

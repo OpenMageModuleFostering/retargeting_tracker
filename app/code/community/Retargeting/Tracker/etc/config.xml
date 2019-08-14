@@ -11,19 +11,27 @@
 <config>
     <modules>
         <Retargeting_Tracker>
-            <version>1.0.0</version>
+            <version>1.0.1</version>
         </Retargeting_Tracker>
     </modules>
     <global>
         <blocks>
-            <retargeting_tracker><class>Retargeting_Tracker_Block</class></retargeting_tracker>
-            <retargeting_tracker_adminhtml><class>Retargeting_Tracker_Block_Adminhtml</class></retargeting_tracker_adminhtml>
+            <retargeting_tracker>
+                <class>Retargeting_Tracker_Block</class>
+            </retargeting_tracker>
+            <retargeting_tracker_adminhtml>
+                <class>Retargeting_Tracker_Block_Adminhtml</class>
+            </retargeting_tracker_adminhtml>
         </blocks>
         <models>
-            <retargeting_tracker><class>Retargeting_Tracker_Model</class></retargeting_tracker>
+            <retargeting_tracker>
+                <class>Retargeting_Tracker_Model</class>
+            </retargeting_tracker>
         </models>
         <helpers>
-            <retargeting_tracker><class>Retargeting_Tracker_Helper</class></retargeting_tracker>
+            <retargeting_tracker>
+                <class>Retargeting_Tracker_Helper</class>
+            </retargeting_tracker>
         </helpers>
         <!--
             <resources>
