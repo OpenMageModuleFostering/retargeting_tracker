@@ -87,7 +87,7 @@ class Retargeting_Tracker_Model_Observer
             }
         }
 
-        if(count($optionsCode) > 0) $options = '{ "code": "'.implode('-', $optionsCode).'", "stock": 1, "details": {'.implode(', ', $optionsDetails).'} }';
+        if(count($optionsCode) > 0) $options = '{ "code": "'.implode('-', $optionsCode).'", "stock":1, "details": {'.implode(', ', $optionsDetails).'} }';
         else $options = "false";
 
         $info = array(
@@ -177,7 +177,7 @@ class Retargeting_Tracker_Model_Observer
                     }
                 }
 
-                $variationCode = count($optionsCode) > 0 ? '"'.implode('-', $optionsCode).'"' : "\"\"";
+                $variationCode = count($optionsCode) > 0 ? '"'.implode('-', $optionsCode).'"' : "false";
 
                 $products[] = '{
                     "id": "'. $item->getProductId() .'",
@@ -233,7 +233,7 @@ class Retargeting_Tracker_Model_Observer
                     "id": "'. $item->getProductId() .'",
                     "quantity": '. $item->getQtyOrdered() .',
                     "price": ' . Mage::helper('tax')->getPrice($item, $item->getPrice()).',
-                    "variation_code": ""}';
+                    "variation_code": false}';
             }
 
             $info = array(
