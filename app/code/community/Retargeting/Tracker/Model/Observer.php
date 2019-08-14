@@ -177,7 +177,7 @@ class Retargeting_Tracker_Model_Observer
                     }
                 }
 
-                $variationCode = count($optionsCode) > 0 ? '"'.implode('-', $optionsCode).'"' : "false";
+                $variationCode = count($optionsCode) > 0 ? '"'.implode('-', $optionsCode).'"' : "\"\"";
 
                 $products[] = '{
                     "id": "'. $item->getProductId() .'",
@@ -233,7 +233,7 @@ class Retargeting_Tracker_Model_Observer
                     "id": "'. $item->getProductId() .'",
                     "quantity": '. $item->getQtyOrdered() .',
                     "price": ' . Mage::helper('tax')->getPrice($item, $item->getPrice()).',
-                    "variation_code": false}';
+                    "variation_code": ""}';
             }
 
             $info = array(
