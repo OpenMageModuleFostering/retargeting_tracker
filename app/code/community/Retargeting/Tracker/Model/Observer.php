@@ -38,6 +38,18 @@ class Retargeting_Tracker_Model_Observer
         Mage::getSingleton('core/session')->setTriggerSetEmail($info);
     }
 
+    public function removeFromCart($observer)
+    {
+        $item = $observer->getQuoteItem();
+
+        $info = array(
+                'product_id' => $item->getProductId(),
+                'quantity' => $item->getQty(),
+                'variation' => false
+            );
+        Mage::getSingleton('core/session')->setTriggerRemoveFromCart(json_encode($info));
+    }
+
     public function TrackAddToCart($observer)
     {
     
@@ -168,7 +180,7 @@ class Retargeting_Tracker_Model_Observer
                     $optionsCode[] = $_optCode;
                 }
 
-                if ( count($itemOptions['options']) > 0 ) {
+                if ( isset($itemOptions['options']) && count($itemOptions['options']) > 0 ) {
                     foreach ($itemOptions['options'] as $itemOption) {
                         $_optCode = str_replace(' ', '', $itemOption['value']);
                         $_optCode = str_replace('-', '', $_optCode);
@@ -179,11 +191,12 @@ class Retargeting_Tracker_Model_Observer
 
                 $variationCode = count($optionsCode) > 0 ? '"'.implode('-', $optionsCode).'"' : "false";
 
-                $products[] = '{
-                    "id": "'. $item->getProductId() .'",
-                    "quantity": '. $item->getQtyOrdered() .',
-                    "price": ' . Mage::helper('tax')->getPrice($item, $item->getPrice()).',
-                    "variation_code": ' . $variationCode . '}';
+                $products[] = array(
+                        'id' => $item->getProductId(),
+                        'quantity' => $item->getQtyOrdered(),
+                        'price' => Mage::helper('tax')->getPrice($item, $item->getPrice()),
+                        'variation_code' => $variationCode
+                    );
             }
 
             $info = array(
@@ -200,11 +213,11 @@ class Retargeting_Tracker_Model_Observer
                 "discount_code" => $order->getCouponCode(),
                 "shipping" => $order->getShippingInclTax(),
                 "total" => $order->getGrandTotal(),
-                "products" => "[".implode(",", $products)."]",
+                "products" => json_encode($products),
             );
-        
-            if($apiKey && $apiKey != "" && $token && $token != "") {
-                $retargetingClient = new Retargeting_REST_API_Client($apiKey,$token);
+
+            if($token && $token != "") {
+                $retargetingClient = new Retargeting_REST_API_Client($token);
                 $retargetingClient->setResponseFormat("json");
                 $retargetingClient->setDecoding(false);
                 $response = $retargetingClient->order->save($info, $products);
@@ -229,11 +242,12 @@ class Retargeting_Tracker_Model_Observer
 
                 $variationCode = "";
 
-                $products[] = '{
-                    "id": "'. $item->getProductId() .'",
-                    "quantity": '. $item->getQtyOrdered() .',
-                    "price": ' . Mage::helper('tax')->getPrice($item, $item->getPrice()).',
-                    "variation_code": false}';
+                $products[] = array(
+                        'id' => $item->getProductId(),
+                        'quantity' => $item->getQtyOrdered(),
+                        'price' => Mage::helper('tax')->getPrice($item, $item->getPrice()),
+                        'variation_code' => false
+                    );
             }
 
             $info = array(
@@ -250,11 +264,11 @@ class Retargeting_Tracker_Model_Observer
                 "discount_code" => $order->getCouponCode(),
                 "shipping" => $order->getShippingInclTax(),
                 "total" => $order->getGrandTotal(),
-                "products" => "[".implode(",", $products)."]",
+                "products" => json_encode($products)
             );
             
-            if($apiKey && $apiKey != "" && $token && $token != "") {
-                $retargetingClient = new Retargeting_REST_API_Client($apiKey,$token);
+            if($token && $token != "") {
+                $retargetingClient = new Retargeting_REST_API_Client($token);
                 $retargetingClient->setResponseFormat("json");
                 $retargetingClient->setDecoding(false);
                 $response = $retargetingClient->order->save($info, $products);
