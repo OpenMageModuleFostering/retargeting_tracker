@@ -970,7 +970,12 @@ _ra_helper_addLoadEvent(function() {
 	$controller = $request->getControllerName();
 	$action = $request->getActionName();
 ?>
-<?php if ( ($module == 'checkout' && $controller == 'cart' && $action == 'index') || ($module == 'checkout' && $controller == 'onepage' && $action == 'index') || (Mage::getURL('checkout/onepage') == Mage::helper('core/url')->getCurrentUrl()) || (strrpos(Mage::helper('core/url')->getCurrentUrl(), "/onestepcheckout") === false) ) : ?>
+<?php
+	if (	($module == 'checkout' && $controller == 'cart' && $action == 'index') || 
+			($module == 'checkout' && $controller == 'onepage' && $action == 'index') || 
+			(Mage::getURL('checkout/onepage') == Mage::helper('core/url')->getCurrentUrl()) || 
+			(strrpos(Mage::helper('core/url')->getCurrentUrl(), "/onestepcheckout") !== false)
+	) : ?>
 	
 	// Trigger checkoutIds
 

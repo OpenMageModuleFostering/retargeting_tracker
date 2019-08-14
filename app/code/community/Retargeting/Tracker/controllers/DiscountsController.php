@@ -56,7 +56,7 @@ class Retargeting_Tracker_DiscountsController extends Mage_Core_Controller_Front
         {
             $rule = Mage::getModel('salesrule/rule');
             $customerGroupColl = Mage::getModel('customer/group')->getCollection();
-            $customer_groups = [];
+            $customer_groups = array();
             foreach($customerGroupColl as $type) {
                 $customer_groups[] = $type->getCustomerGroupId();
             }
