@@ -1,7 +1,7 @@
 {
-    "name": "OpenMageModuleFostering\/Retargeting_Tracker",
+    "name": "openmage-module-fostering\/retargeting_tracker",
     "type": "magento-module",
-    "license": "Open-Software-License-(OSL)",
+    "license": "OSL-3.0",
     "homepage": "",
     "description": "Retargeting and Marketing Automation. Personalized email content + Personalized live messages + SMS triggers to deliver to your customers the products they want to buy.",
     "authors": [
